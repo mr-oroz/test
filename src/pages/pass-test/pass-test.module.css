@@ -1,0 +1,21 @@
+.content {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 20px;
+  margin-top: 50px;
+}
+
+.left, .right {
+  display: flex;
+  flex-direction: column;
+}
+
+.left {
+  align-items: center;
+}
+
+
+.right {
+  background-color: #dfe6e9;
+  padding: 15px;
+}

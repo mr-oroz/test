@@ -19,3 +19,17 @@
   background-color: #dfe6e9;
   padding: 15px;
 }
+
+.questions{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.questions li {
+  border: 2px solid #a29bfe;
+  padding: 5px 8px;
+  width: 280px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

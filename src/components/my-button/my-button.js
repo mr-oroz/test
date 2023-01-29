@@ -10,9 +10,9 @@ const ColorButton = styled(Button)(() => ({
   },
 }));
 
-const MyButton = ({children}) => {
+const MyButton = ({children, onClick, type}) => {
   return (
-    <ColorButton  variant='contained'>
+    <ColorButton type={type} onClick={onClick}  variant='contained'>
     {children}
     </ColorButton>
   );

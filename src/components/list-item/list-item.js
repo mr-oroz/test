@@ -1,21 +1,22 @@
 import React, { useContext } from 'react';
-import { MyContext } from '../../context/MyContext/MyContext';
 import List from '../list/list';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
-const ListItem = (props) => {
-  const { question, variants,  id} = props;
-  const { correctCheck } = useContext(MyContext)
+import { MyContext } from '../../context/MyContext/MyContext';
 
-  const handlerClick = (correct) => {
-    correctCheck(correct)
+const ListItem = (props) => {
+  const { question, variants, id } = props;
+  const { checkScore } = useContext(MyContext);
+  const handlerClick = (bool) => {
+    console.log(bool)
+    checkScore(bool)
   }
 
   return (
-    <li> 
+    <li>
       <h3>{question}</h3>
       <FormControl>
         <FormLabel id="demo-radio-buttons-group-label">Выберите ответ</FormLabel>
@@ -29,8 +30,8 @@ const ListItem = (props) => {
             renderItem={(elem, index) => <FormControlLabel
               key={index}
               name={id}
-              value={elem.value}
               onClick={() => handlerClick(elem.correct)}
+              value={elem.value}
               control={<Radio />}
               label={elem.variant} />} />
         </RadioGroup>

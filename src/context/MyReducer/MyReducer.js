@@ -1,16 +1,16 @@
-import { ADD_TO_QUESTION, SCORE, REMOVE_QUESTION } from "../types";
+import { ADD_TO_QUESTION, REMOVE_QUESTION } from "../types";
 
 export const MyReducer = (state, action) => {
 
   const { questions, score } = state;
-  const { payload, type } = action;
+  const { payload, type  } = action;
 
   switch (type) {
     case ADD_TO_QUESTION: {
       const newItem = {
         id: Date.now(),
         question: payload.create,
-        variant: payload.variant,
+        variant: payload.variant, // a b c
         variants: [
           { variant: payload.variantA, value: 'a', correct: payload.variant === 'a' ? true : false },
           { variant: payload.variantB, value: 'b', correct: payload.variant === 'b' ? true : false  },
@@ -18,7 +18,7 @@ export const MyReducer = (state, action) => {
         ],
         completed: false
       }
-      const newArr = [...state.questions, newItem]
+      const newArr = [...questions, newItem]
       return {
         ...state,
         questions: newArr
@@ -31,15 +31,20 @@ export const MyReducer = (state, action) => {
         questions: newArr
       }
     }
-    case SCORE: {
-      if(payload.correct === true) {
+    case "SCORE" : {
+      if(payload === true) {
         return {
           ...state,
           score: score + 1
         }
       }
     }
-
+    case "MODAL" : {
+      return {
+        ...state,
+        modal: payload // true false
+      }
+    }
     default:
       return state
   }

@@ -4,10 +4,12 @@ import { MyContext } from '../../context/MyContext/MyContext';
 import List from '../../components/list/list';
 import ListItem from '../../components/list-item/list-item';
 import MyButton from '../../components/my-button/my-button';
+import Modal from '../../components/modal/modal';
 
 const PassTest = () => {
-  const { questions, score } = useContext(MyContext);
+  const { questions, modal, toggleModal } = useContext(MyContext);
   console.log(questions)
+
   if (questions.length === 0) {
     return <h1
       style={{
@@ -15,8 +17,8 @@ const PassTest = () => {
         marginTop: '50px'
       }}>пока нет тесты</h1>
   }
-  const handlerClickTotal = () => {
-    console.log(score)
+  if(modal) {
+    return <Modal/>
   }
   return (
     <div className={s.passTest}>
@@ -45,8 +47,9 @@ const PassTest = () => {
               />
             </ol>
             <div className={s.btn}>
-              <MyButton onClick={handlerClickTotal}>
-                Cохранить
+              <MyButton
+                onClick={() => toggleModal(true)}>
+                отправить ответы
               </MyButton>
             </div>
           </div>
